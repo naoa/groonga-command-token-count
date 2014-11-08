@@ -1,0 +1,70 @@
+register commands/token_count
+[[0,0.0,0.0],true]
+table_create Entries TABLE_NO_KEY
+[[0,0.0,0.0],true]
+column_create Entries body COLUMN_SCALAR ShortText
+[[0,0.0,0.0],true]
+table_create Terms TABLE_PAT_KEY ShortText --default_tokenizer TokenBigram --normalizer NormalizerAuto
+[[0,0.0,0.0],true]
+column_create Terms document_index COLUMN_INDEX|WITH_POSITION Entries body
+[[0,0.0,0.0],true]
+load --table Entries
+[
+{"body": "今日は雨。今日は調子が良い。今日は雨"},
+{"body": "今日は雨。今日は調子が悪い"}
+]
+[[0,0.0,0.0],2]
+token_count Terms document_index --token_size 2 --use_ctx_output 1
+[
+  [
+    0,
+    0.0,
+    0.0
+  ],
+  [
+    [
+      23,
+      10
+    ],
+    [
+      "今日",
+      5
+    ],
+    [
+      "日は",
+      5
+    ],
+    [
+      "は雨",
+      3
+    ],
+    [
+      "調子",
+      2
+    ],
+    [
+      "は調",
+      2
+    ],
+    [
+      "子が",
+      2
+    ],
+    [
+      "が悪",
+      1
+    ],
+    [
+      "良い",
+      1
+    ],
+    [
+      "が良",
+      1
+    ],
+    [
+      "悪い",
+      1
+    ]
+  ]
+]

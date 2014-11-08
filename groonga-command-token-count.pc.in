@@ -1,0 +1,5 @@
+plugin_name=commands/token_count
+
+Name: groonga-command-token-count
+Description: Groonga token count command plugin
+Version: @VERSION@
