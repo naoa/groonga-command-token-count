@@ -1,5 +1,7 @@
 Makefile
 Makefile.in
+*.spec
+*.pc
 *.o
 *.la
 *.lo
