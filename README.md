@@ -96,6 +96,13 @@ Install ``groonga-command-token_count`` package:
 % sudo dpkg -i groonga-command-token-count_0.0.1-1_amd64.deb
 ```
 
+* sid
+
+```
+% wget http://packages.createfield.com/debian/sid/groonga-command-token-count_0.0.1-1_amd64.deb
+% sudo dpkg -i groonga-command-token-count_0.0.1-1_amd64.deb
+```
+
 ### Ubuntu
 
 * precise
@@ -109,6 +116,12 @@ Install ``groonga-command-token_count`` package:
 
 ```
 % wget http://packages.createfield.com/ubuntu/trusty/groonga-command-token-count_0.0.1-1_amd64.deb
+% sudo dpkg -i groonga-command-token-count_0.0.1-1_amd64.deb
+```
+* utopic
+
+```
+% wget http://packages.createfield.com/ubuntu/utopic/groonga-command-token-count_0.0.1-1_amd64.deb
 % sudo dpkg -i groonga-command-token-count_0.0.1-1_amd64.deb
 ```
 
