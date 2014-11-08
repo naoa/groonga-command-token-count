@@ -2,7 +2,7 @@
 
 ## Command
 
-* ``token_count``
+### ``token_count``
 
 指定したインデックスカラムからトークンの出現数をカウントします。
 
@@ -50,7 +50,7 @@ sys     1m3.834s
 
 ## Install
 
-Install ``groonga-command-token_count`` package:
+Install ``groonga-command-token-count`` package:
 
 ### CentOS
 
