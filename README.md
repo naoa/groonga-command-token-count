@@ -40,7 +40,7 @@ Total kinds = 10
 
 * 実行時間例
 
-161.192GiBのTokenBigramの日本語文書での実行時間
+約80GiBのTokenBigramの日本語文書での実行時間
 
 ```
 real    19m18.369s
