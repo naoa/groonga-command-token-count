@@ -382,20 +382,20 @@ command_document_count(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj 
 
   {
     grn_obj source_ids;
-    unsigned int i, n_ids;
+    unsigned int n_ids;
     grn_obj *source_table;
 
     GRN_UINT32_INIT(&source_ids, GRN_OBJ_VECTOR);
     grn_obj_get_info(ctx, index_column, GRN_INFO_SOURCE, &source_ids);
     n_ids = GRN_BULK_VSIZE(&source_ids) / sizeof(grn_id);
 
-    for (i = 0; i < n_ids; i++) {
+    if (n_ids > 0) {
       grn_id source_id;
       grn_obj *source;
-      source_id = GRN_UINT32_VALUE_AT(&source_ids, i);
+      source_id = GRN_UINT32_VALUE_AT(&source_ids, 0);
       source = grn_ctx_at(ctx, source_id);
       source_table = grn_column_table(ctx, source);
-      n_documents += grn_table_size(ctx, source_table);
+      n_documents = grn_table_size(ctx, source_table);
     }
     grn_obj_unlink(ctx, &source_ids);
   }
