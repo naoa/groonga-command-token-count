@@ -104,7 +104,7 @@ Total kinds of token = 5
 ```bash
 real    0m2.763s
 user    0m2.627s
-sys     0m0.134s
+sys     0.0.234s
 ```
 
 ## Install
@@ -116,13 +116,13 @@ Install ``groonga-command-token-count`` package:
 * CentOS6
 
 ```
-% sudo yum localinstall -y http://packages.createfield.com/centos/6/groonga-command-token-count-0.0.1-1.el6.x86_64.rpm
+% sudo yum localinstall -y http://packages.createfield.com/centos/6/groonga-command-token-count-0.0.2-1.el6.x86_64.rpm
 ```
 
 * CentOS7
 
 ```
-% sudo yum localinstall -y http://packages.createfield.com/centos/7/groonga-command-token-count-0.0.1-1.el7.centos.x86_64.rpm
+% sudo yum localinstall -y http://packages.createfield.com/centos/7/groonga-command-token-count-0.0.2-1.el7.centos.x86_64.rpm
 ```
 
 ### Fedora
@@ -130,13 +130,13 @@ Install ``groonga-command-token-count`` package:
 * Fedora 20
 
 ```
-% sudo yum localinstall -y http://packages.createfield.com/fedora/20/groonga-command-token-count-0.0.1-1.fc20.x86_64.rpm
+% sudo yum localinstall -y http://packages.createfield.com/fedora/20/groonga-command-token-count-0.0.2-1.fc20.x86_64.rpm
 ```
 
 * Fedora 21
 
 ```
-% sudo yum localinstall -y http://packages.createfield.com/fedora/21/groonga-command-token-count-0.0.1-1.fc21.x86_64.rpm
+% sudo yum localinstall -y http://packages.createfield.com/fedora/21/groonga-command-token-count-0.0.2-1.fc21.x86_64.rpm
 ```
 
 ### Debian GNU/LINUX
@@ -144,22 +144,22 @@ Install ``groonga-command-token-count`` package:
 * wheezy
 
 ```
-% wget http://packages.createfield.com/debian/wheezy/groonga-command-token-count_0.0.1-1_amd64.deb
-% sudo dpkg -i groonga-command-token-count_0.0.1-1_amd64.deb
+% wget http://packages.createfield.com/debian/wheezy/groonga-command-token-count_0.0.2-1_amd64.deb
+% sudo dpkg -i groonga-command-token-count_0.0.2-1_amd64.deb
 ```
 
 * jessie
 
 ```
-% wget http://packages.createfield.com/debian/jessie/groonga-command-token-count_0.0.1-1_amd64.deb
-% sudo dpkg -i groonga-command-token-count_0.0.1-1_amd64.deb
+% wget http://packages.createfield.com/debian/jessie/groonga-command-token-count_0.0.2-1_amd64.deb
+% sudo dpkg -i groonga-command-token-count_0.0.2-1_amd64.deb
 ```
 
 * sid
 
 ```
-% wget http://packages.createfield.com/debian/sid/groonga-command-token-count_0.0.1-1_amd64.deb
-% sudo dpkg -i groonga-command-token-count_0.0.1-1_amd64.deb
+% wget http://packages.createfield.com/debian/sid/groonga-command-token-count_0.0.2-1_amd64.deb
+% sudo dpkg -i groonga-command-token-count_0.0.2-1_amd64.deb
 ```
 
 ### Ubuntu
@@ -167,21 +167,21 @@ Install ``groonga-command-token-count`` package:
 * precise
 
 ```
-% wget http://packages.createfield.com/ubuntu/precise/groonga-command-token-count_0.0.1-1_amd64.deb
-% sudo dpkg -i groonga-command-token-count_0.0.1-1_amd64.deb
+% wget http://packages.createfield.com/ubuntu/precise/groonga-command-token-count_0.0.2-1_amd64.deb
+% sudo dpkg -i groonga-command-token-count_0.0.2-1_amd64.deb
 ```
 
 * trusty
 
 ```
-% wget http://packages.createfield.com/ubuntu/trusty/groonga-command-token-count_0.0.1-1_amd64.deb
-% sudo dpkg -i groonga-command-token-count_0.0.1-1_amd64.deb
+% wget http://packages.createfield.com/ubuntu/trusty/groonga-command-token-count_0.0.2-1_amd64.deb
+% sudo dpkg -i groonga-command-token-count_0.0.2-1_amd64.deb
 ```
 * utopic
 
 ```
-% wget http://packages.createfield.com/ubuntu/utopic/groonga-command-token-count_0.0.1-1_amd64.deb
-% sudo dpkg -i groonga-command-token-count_0.0.1-1_amd64.deb
+% wget http://packages.createfield.com/ubuntu/utopic/groonga-command-token-count_0.0.2-1_amd64.deb
+% sudo dpkg -i groonga-command-token-count_0.0.2-1_amd64.deb
 ```
 
 ### Source install
