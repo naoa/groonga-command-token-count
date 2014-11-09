@@ -396,6 +396,7 @@ command_document_count(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj 
       source = grn_ctx_at(ctx, source_id);
       source_table = grn_column_table(ctx, source);
       n_documents = grn_table_size(ctx, source_table);
+      printf("n_ids=%d, n_documents=%d\n",n_ids, n_documents);
     }
     grn_obj_unlink(ctx, &source_ids);
   }
@@ -528,19 +529,19 @@ command_document_count(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj 
           GRN_BULK_REWIND(&value);
           grn_obj_get_value(ctx, hash, sorted_key, &value);
           if (GRN_UINT32_VALUE(&value) >= (unsigned int)threshold || threshold < 0) {
-            float idf = (float)GRN_UINT32_VALUE(&value) / (float)n_documents;
-            if (idf > ratio || ratio < 0) {
+            float total_ratio = (float)GRN_UINT32_VALUE(&value) / (float)n_documents;
+            if (total_ratio > ratio || ratio < 0) {
               if (use_ctx_output) {
                 grn_ctx_output_array_open(ctx, "TOKEN", 3);
                 grn_ctx_output_str(ctx, key, key_size);
                 grn_ctx_output_int32(ctx, GRN_UINT32_VALUE(&value));
-                grn_ctx_output_float(ctx, idf);
+                grn_ctx_output_float(ctx, total_ratio);
                 grn_ctx_output_array_close(ctx);
               } else {
                 printf("%.*s,%d,%f\n",
                        key_size, key,
                        GRN_UINT32_VALUE(&value),
-                       idf);
+                       total_ratio);
               }
             }
           }
