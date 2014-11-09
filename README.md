@@ -102,7 +102,9 @@ Total kinds of token = 5
 約80GiBのTokenBigramの日本語文書での実行時間
 
 ```bash
-
+real    0m2.763s
+user    0m2.627s
+sys     0m0.134s
 ```
 
 ## Install
