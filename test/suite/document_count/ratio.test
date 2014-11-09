@@ -1,0 +1,17 @@
+register commands/token_count
+
+table_create Entries TABLE_NO_KEY
+column_create Entries body COLUMN_SCALAR ShortText
+
+table_create Terms TABLE_PAT_KEY ShortText --default_tokenizer TokenBigram --normalizer NormalizerAuto
+
+load --table Entries
+[
+{"body": "a b c d e"},
+{"body": "a b c d"},
+{"body": "a b c"},
+{"body": "a b"}
+]
+column_create Terms document_index COLUMN_INDEX|WITH_POSITION Entries body
+
+document_count Terms document_index --token_size -1 --ratio 0.75 --use_ctx_output 1

@@ -8,7 +8,7 @@
 
 * 実行例
 
-```
+```bash
 token_count Terms document_index --token_size 2 --limit 3 --use_ctx_output 1
 [[0,0.0,0.0],[[23,10],["今日",5],["日は",5],["は雨",3]]]
 
@@ -37,6 +37,65 @@ Total kinds = 10
 * 出力形式  
 標準出力に``トークン,出現数``のcsv形式が出力されます。  
 ``-- use_ctx_output 1``を利用した場合、json形式で出力されます。
+
+* 実行時間例
+
+約80GiBのTokenBigramの日本語文書での実行時間
+
+```
+real    19m18.369s
+user    17m10.271s
+sys     1m3.834s
+```
+
+### ``document_count``
+
+指定したインデックスカラムからトークンが含まれるドキュメント数DF(Document Frequency)をカウントします。総ドキュメント数に対して、DF値が大きいものはどのドキュメントにもそのトークンが現れていることを示しており、トークンの重要度を示す尺度として利用されることがあります。以下の例では、``a``と``b``は全ての文書に含まれているため、値が大きく、``e``は1つの文書にしか含まれていないため、値が小さくなっています。
+
+* 実行例
+
+```bash
+table_create Entries TABLE_NO_KEY
+column_create Entries body COLUMN_SCALAR ShortText
+table_create Terms TABLE_PAT_KEY ShortText --default_tokenizer TokenBigram --normalizer NormalizerAuto
+load --table Entries
+[
+{"body": "a b c d e"},
+{"body": "a b c d"},
+{"body": "a b c"},
+{"body": "a b"}
+]
+column_create Terms document_index COLUMN_INDEX|WITH_POSITION Entries body
+document_count Terms document_index --token_size -1
+a,6,1.500000
+b,6,1.500000
+c,5,1.250000
+d,4,1.000000
+e,1,0.250000
+Total tokens(include tolerance) = 22
+Total documents = 4
+Total kinds of token = 5
+```
+
+* 入力形式
+
+| arg        | description |default|
+|:-----------|:------------|:------|
+| table      | テーブルを指定 | NULL |
+| column     | インデックスカラムを指定 | NULL |
+| token_size | 出力トークンの文字数を指定 | -1 |
+| ctype | 出力トークンの文字種を指定(ja/alpha) | all |
+| sortby | 出力トークンのソートを指定(_key/_value) | ``-_value`` |
+| limit | 出力トークンの数を指定 | -1 |
+| ratio | 出力トークンの数を全体ドキュメント数に対する比率で指定 | -1 |
+| threshold | 出力トークンの最低出現数を指定 | -1 |
+| use_ctx_output | json形式で出力するかを指定(0/1) | 0 |
+
+* 出力形式
+標準出力に``トークン,出現ドキュメント数(DF),出現ドキュメント数/全ドキュメント数(IDFではない)``のcsv形式が出力されます。
+``-- use_ctx_output 1``を利用した場合、json形式で出力されます。配列の一つ目は、総トークン数,総ドキュメント数,トークンの種類数です。
+
+なお、GroongaのDF値には誤差が含まれているため、比が1以上の値になることがあります。静的索引構築の場合、DF値の誤差は少ないですが(たぶん2多いだけ)、動的索引構築の場合、ドキュメントに含まれるトークンの種類ごとにDF値が1ずつ増える気がします。ただ、トークン数が十分に多い文書を多数読み込ませれば、問題ない程度でしょう。
 
 * 実行時間例
 

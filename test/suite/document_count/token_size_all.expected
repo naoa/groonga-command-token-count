@@ -1,0 +1,58 @@
+register commands/token_count
+[[0,0.0,0.0],true]
+table_create Entries TABLE_NO_KEY
+[[0,0.0,0.0],true]
+column_create Entries body COLUMN_SCALAR ShortText
+[[0,0.0,0.0],true]
+table_create Terms TABLE_PAT_KEY ShortText --default_tokenizer TokenBigram --normalizer NormalizerAuto
+[[0,0.0,0.0],true]
+load --table Entries
+[
+{"body": "a b c d e"},
+{"body": "a b c d"},
+{"body": "a b c"},
+{"body": "a b"}
+]
+[[0,0.0,0.0],4]
+column_create Terms document_index COLUMN_INDEX|WITH_POSITION Entries body
+[[0,0.0,0.0],true]
+document_count Terms document_index --token_size -1 --use_ctx_output 1
+[
+  [
+    0,
+    0.0,
+    0.0
+  ],
+  [
+    [
+      22,
+      4,
+      5
+    ],
+    [
+      "a",
+      6,
+      1.5
+    ],
+    [
+      "b",
+      6,
+      1.5
+    ],
+    [
+      "c",
+      5,
+      1.25
+    ],
+    [
+      "d",
+      4,
+      1.0
+    ],
+    [
+      "e",
+      1,
+      0.25
+    ]
+  ]
+]
