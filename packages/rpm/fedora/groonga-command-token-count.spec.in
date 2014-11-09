@@ -51,5 +51,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/groonga/plugins/*/*.a
 %{_libdir}/pkgconfig/groonga-command-token-count.pc
 
 %changelog
+* Sun Nov 9 2014 Naoya Murakami <naoya@createfield.com> - 0.0.2-1
+- add document_count
 * Sat Nov 8 2014 Naoya Murakami <naoya@createfield.com> - 0.0.1-1
 - initial packaging for Fedora

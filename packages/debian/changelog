@@ -1,3 +1,8 @@
+groonga-command-token-count (0.0.2-1) unstable; urgency=low
+
+  * Add document_count
+
+ -- Naoya Murakami <naoya@createfield.com>  Sat, 8 Nov 2014 00:00:00 +0900
 groonga-command-token-count (0.0.1-1) unstable; urgency=low
 
   * Initial release.
