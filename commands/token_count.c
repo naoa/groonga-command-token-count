@@ -45,7 +45,6 @@ command_token_count(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **a
   float ratio = -1; /* 0.01 */
   int threshold = -1; /* 10000000 */
   grn_bool use_ctx_output = GRN_FALSE;
-  grn_bool output_prefix = GRN_FALSE;
 
   var = grn_plugin_proc_get_var(ctx, user_data, "table", -1);
   if (GRN_TEXT_LEN(var) != 0) {
@@ -92,10 +91,6 @@ command_token_count(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **a
   var = grn_plugin_proc_get_var(ctx, user_data, "use_ctx_output", -1);
   if (GRN_TEXT_LEN(var) != 0) {
     use_ctx_output = atoi(GRN_TEXT_VALUE(var));
-  }
-  var = grn_plugin_proc_get_var(ctx, user_data, "output_prefix", -1);
-  if (GRN_TEXT_LEN(var) != 0) {
-    output_prefix = atoi(GRN_TEXT_VALUE(var));
   }
 
   grn_obj *table;
@@ -265,23 +260,8 @@ command_token_count(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **a
               grn_ctx_output_str(ctx, key, key_size);
               grn_ctx_output_int32(ctx, GRN_UINT32_VALUE(&value));
               grn_ctx_output_array_close(ctx);
-              if (output_prefix) {
-                int char_length;
-                grn_encoding encoding = ctx->encoding;
-                char_length = grn_plugin_charlen(ctx, key, key_size, encoding);
-                grn_ctx_output_array_open(ctx, "TOKEN_PREFIX", 2);
-                grn_ctx_output_str(ctx, key, char_length);
-                grn_ctx_output_int32(ctx, GRN_UINT32_VALUE(&value));
-                grn_ctx_output_array_close(ctx);
-              }
             } else {
               printf("%.*s,%d\n", key_size, key, GRN_UINT32_VALUE(&value));
-              if (output_prefix) {
-                int char_length;
-                grn_encoding encoding = ctx->encoding;
-                char_length = grn_plugin_charlen(ctx, key, key_size, encoding);
-                printf("%.*s,%d\n", char_length, key, GRN_UINT32_VALUE(&value));
-              }
             }
           }
         }
@@ -596,7 +576,7 @@ GRN_PLUGIN_INIT(GNUC_UNUSED grn_ctx *ctx)
 grn_rc
 GRN_PLUGIN_REGISTER(grn_ctx *ctx)
 {
-  grn_expr_var vars[10];
+  grn_expr_var vars[9];
 
   grn_plugin_expr_var_init(ctx, &vars[0], "table", -1);
   grn_plugin_expr_var_init(ctx, &vars[1], "column", -1);
@@ -607,8 +587,7 @@ GRN_PLUGIN_REGISTER(grn_ctx *ctx)
   grn_plugin_expr_var_init(ctx, &vars[6], "ratio", -1);
   grn_plugin_expr_var_init(ctx, &vars[7], "threshold", -1);
   grn_plugin_expr_var_init(ctx, &vars[8], "use_ctx_output", -1);
-  grn_plugin_expr_var_init(ctx, &vars[9], "output_prefix", -1);
-  grn_plugin_command_create(ctx, "token_count", -1, command_token_count, 10, vars);
+  grn_plugin_command_create(ctx, "token_count", -1, command_token_count, 9, vars);
 
   grn_plugin_command_create(ctx, "document_count", -1, command_document_count, 9, vars);
 
