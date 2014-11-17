@@ -396,7 +396,6 @@ command_document_count(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj 
       source = grn_ctx_at(ctx, source_id);
       source_table = grn_column_table(ctx, source);
       n_documents = grn_table_size(ctx, source_table);
-      printf("n_ids=%d, n_documents=%d\n",n_ids, n_documents);
     }
     grn_obj_unlink(ctx, &source_ids);
   }
